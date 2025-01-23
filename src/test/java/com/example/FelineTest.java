@@ -1,30 +1,30 @@
-import com.example.Feline;
-import org.junit.Test;
+package com.example;
 
-import java.util.Arrays;
-import java.util.List;
+import org.junit.Test;
+import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
 
-public class FelineTest extends Feline {
+
+public class FelineTest {
+
+    private Feline feline;
+
     @Test
     public void felineFoodTest() throws Exception {
-
-        Feline feline = new Feline();
-        List<String> actualFoodList = feline.eatMeat();
-        List<String> expectedList = Arrays.asList("Животные", "Птицы", "Рыба");
-        assertEquals(expectedList, actualFoodList);
+        feline.eatMeat();
+        Mockito.verify(feline, Mockito.times(1)).getFood("Хищник");
     }
 
     @Test
-    public void felineFamilyTest(){
+    public void felineFamilyTest() {
         Feline feline = new Feline();
         String actualFamily = feline.getFamily();
         assertEquals("Кошачьи", actualFamily);
     }
 
     @Test
-    public void felineGetKittensTest(){
+    public void felineKittensTest() {
         Feline feline = new Feline();
         int actualKittens = feline.getKittens();
         assertEquals(1, actualKittens);
