@@ -1,6 +1,7 @@
 package com.example;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -12,6 +13,11 @@ public class CatTest {
     private Cat cat;
     @Mock
     Feline feline;
+
+    @Before
+    public void setUp() {
+        cat = new Cat(feline);
+    }
 
     @Test
     public void getCatSoundReturn() {
