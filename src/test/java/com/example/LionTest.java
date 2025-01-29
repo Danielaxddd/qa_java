@@ -1,21 +1,24 @@
 package com.example;
 
+import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LionTest {
     @Mock
-    Feline feline;
-    private Lion lion;
+    private Feline feline;
 
     @Test
-    public void lionHaveManeTrue() throws Exception {
+    public void lionHaveManeTrueTest() throws Exception {
         Lion lion = new Lion("Самец", feline);
         boolean expectedHasMane = true;
         boolean actualHasMane = lion.doesHaveMane();
@@ -25,14 +28,18 @@ public class LionTest {
     @Test
     public void getKittensTest() throws Exception {
         Lion lion = new Lion("Самец", feline);
-        lion.getKittens();
-        Mockito.verify(feline).getKittens();
+        int expectedCount = 1;
+        Mockito.when(feline.getKittens()).thenReturn(expectedCount);
+        MatcherAssert.assertThat("Некорректное количество котят", lion.getKittens(), equalTo(expectedCount)
+        );
     }
 
     @Test
-    public void lionEatMeat() throws Exception {
+    public void lionGetFoodTest() throws Exception {
         Lion lion = new Lion("Самец", feline);
-        lion.getFood();
-        Mockito.verify(feline).getFood(Mockito.anyString());
+        List<String> expectedFood = List.of("Животные", "Птицы", "Рыба");
+        Mockito.when(feline.getFood("Хищник")).thenReturn(expectedFood);
+        List<String> actualFood = lion.getFood();
+        assertEquals(expectedFood, actualFood);
     }
 }

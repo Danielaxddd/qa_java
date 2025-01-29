@@ -1,12 +1,15 @@
 package com.example;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CatTest {
@@ -20,16 +23,19 @@ public class CatTest {
     }
 
     @Test
-    public void getCatSoundReturn() {
+    public void getCatSoundReturnTest() {
         Cat cat = new Cat(feline);
         String actualCatSound = cat.getSound();
-        Assert.assertEquals("Кот издал звук не Мяу","Мяу", actualCatSound);
+        assertEquals("Кот издал звук не Мяу","Мяу", actualCatSound);
     }
 
     @Test
     public void getFoodTest() throws Exception {
-        cat.getFood();
-        Mockito.verify(feline).eatMeat();
+        Cat cat = new Cat(feline);
+        List<String> expectedFood = List.of("Животные", "Птицы", "Рыба");
+        Mockito.when(feline.eatMeat()).thenReturn(expectedFood);
+        List<String> actualFood = cat.getFood();
+        assertEquals(expectedFood, actualFood);
     }
 }
 

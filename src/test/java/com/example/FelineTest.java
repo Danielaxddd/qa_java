@@ -1,29 +1,27 @@
 package com.example;
 
-import junit.framework.TestCase;
+import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
-@RunWith(MockitoJUnitRunner.class)
-public class FelineTest extends TestCase{
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertEquals;
 
-    @Spy
-    private Feline feline;
+public class FelineTest {
 
     @Test
-    public void felineFoodTest() throws Exception {
-        feline.eatMeat();
-        Mockito.verify(feline, Mockito.times(1)).getFood("Хищник");
+    public void felineEatMeatTest() throws Exception {
+        Feline feline = new Feline();
+        MatcherAssert.assertThat("Cписок еды не верный", feline.eatMeat(), equalTo(feline.getFood("Хищник"))
+        );
     }
 
     @Test
     public void felineFamilyTest() {
         Feline feline = new Feline();
         String actualFamily = feline.getFamily();
-        assertEquals("Кошачьи", actualFamily);
+        assertEquals("Семья не совпадает","Кошачьи", actualFamily);
     }
 
     @Test
