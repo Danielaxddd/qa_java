@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface Predator {
 
-    List<String> eatMeat() throws Exception;
+    default List<String> eatMeat() throws Exception {
+        return null;
+    }
 
 }

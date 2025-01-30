@@ -42,4 +42,15 @@ public class LionTest {
         List<String> actualFood = lion.getFood();
         assertEquals(expectedFood, actualFood);
     }
+
+    @Test()
+    public void lionSexHaveException() throws Exception {
+
+        try {
+            Lion lion = new Lion(" ", feline);
+            lion.doesHaveMane();
+        } catch (Exception thrown) {
+            assertNotEquals(" ", thrown.getMessage());
+        }
+    }
 }

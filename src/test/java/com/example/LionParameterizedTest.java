@@ -16,8 +16,8 @@ public class LionParameterizedTest {
         this.sex = lionSex;
         this.hasMane = hasMane;
     }
-
-    @Parameterized.Parameters
+// не исключаю что не правильно поняла на счет этого. посмотрела в интернете и все равно не очень поняла. вот так?
+    @Parameterized.Parameters(name = "Lion. Пол: {0}, {1}")
     public static Object[][] getSexData() {
         return new Object[][]{
                 {"Самец", true},

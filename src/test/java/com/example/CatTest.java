@@ -24,7 +24,6 @@ public class CatTest {
 
     @Test
     public void getCatSoundReturnTest() {
-        Cat cat = new Cat(feline);
         String actualCatSound = cat.getSound();
         assertEquals("Кот издал звук не Мяу","Мяу", actualCatSound);
     }
